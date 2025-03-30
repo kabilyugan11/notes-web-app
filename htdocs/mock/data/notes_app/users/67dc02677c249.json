@@ -1,0 +1,1 @@
+{"username":"testuser3","email":"test3@example.com","password":"$2y$10$5rXPNvSVCaarMAL9Rk.suO5o44OnZOLAuoyefHbba3yrbINKPIniu","createdAt":{"$date":{"$numberLong":"1742471783508"}},"updatedAt":{"$date":{"$numberLong":"1742471783508"}},"_id":"67dc02677c249"}

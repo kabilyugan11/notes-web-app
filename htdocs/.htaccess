@@ -1,0 +1,3 @@
+# Redirect API requests to the workspace API directory
+RewriteEngine On
+RewriteRule ^api/(.*) ../workspace/api/$1 [L]

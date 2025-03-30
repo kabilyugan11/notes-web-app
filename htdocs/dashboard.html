@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        /* Additional animations */
+        .zoom-in {
+            animation: zoomIn 0.5s ease-out;
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.7s ease-out;
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .bounce-in {
+            animation: bounceIn 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+        
+        .rotate-in {
+            animation: rotateIn 0.6s ease-out;
+        }
+        
+        @keyframes rotateIn {
+            from { transform: rotate(-15deg) scale(0.9); opacity: 0; }
+            to { transform: rotate(0) scale(1); opacity: 1; }
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+        
+        .bg-shift {
+            animation: bgShift 8s infinite alternate;
+            background-size: 400% 400%;
+        }
+        
+        @keyframes bgShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .nav-item:hover .nav-link {
+            animation: pulse 0.5s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Apply subtle gradient background to the container */
+        .container {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .container:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        /* Enhance buttons with transitions */
+        .btn {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Note item animations */
+        .list-group-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .list-group-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Add particle background */
+        .particle-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        /* Improved header */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        header:hover {
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        /* Enhanced container styling */
+        .container {
+            animation: fadeIn 0.8s forwards;
+        }
+        
+        /* Enhanced card styles */
+        .card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.15);
+        }
+        
+        /* Cool animations for notes */
+        @keyframes slideInFromRight {
+            0% { 
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% { 
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Create Note Button styling - Updated with gradient */
+        #create-note-btn {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #8BC34A 0%, #4CAF50 50%, #2E7D32 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        #create-note-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        #create-note-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4);
+        }
+        
+        #create-note-btn:hover:before {
+            left: 100%;
+        }
+        
+        /* Note form enhancements */
+        #note-form {
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            background: white;
+            margin-bottom: 30px;
+        }
+        
+        #note-title, #note-content {
+            border-radius: 8px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        #note-title:focus, #note-content:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+            transform: translateY(-2px);
+        }
+        
+        /* Animated note elements */
+        .note-item {
+            animation: fadeInUp 0.5s forwards;
+            opacity: 0;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .note-item:hover {
+            background-color: rgba(76, 175, 80, 0.05);
+            transform: scale(1.02);
+        }
+        
+        /* Enhance welcome message */
+        #user-welcome {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        #user-welcome h3 {
+            font-weight: 600;
+            color: var(--secondary-color);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        #username {
+            color: var(--primary-color);
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        /* Footer enhancements */
+        footer {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 40px;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #f1f1f1;
+        }
+        
+        body.dark-mode .container {
+            background: linear-gradient(135deg, #222831 0%, #31363F 100%);
+        }
+        
+        body.dark-mode .card {
+            background: rgba(49, 54, 63, 0.95);
+            color: #f1f1f1;
+        }
+        
+        body.dark-mode header {
+            background: rgba(34, 40, 49, 0.9);
+        }
+        
+        body.dark-mode .navbar {
+            background-color: transparent !important;
+        }
+        
+        body.dark-mode .nav-link, 
+        body.dark-mode .navbar-brand {
+            color: #f1f1f1 !important;
+        }
+        
+        body.dark-mode .note-form {
+            background: #222831;
+        }
+        
+        body.dark-mode #note-title, 
+        body.dark-mode #note-content {
+            background: #31363F;
+            color: #f1f1f1;
+            border-color: #454e56;
+        }
+        
+        body.dark-mode footer {
+            background: rgba(34, 40, 49, 0.8);
+            color: #f1f1f1;
+        }
+        
+        body.dark-mode .alert-info {
+            background-color: rgba(33, 150, 243, 0.2);
+            color: #90caf9;
+        }
+        
+        body.dark-mode .text-muted {
+            color: #b0bec5 !important;
+        }
+        
+        /* Dark mode toggle button */
+        #dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        #dark-mode-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .mode-icon {
+            font-size: 20px;
+            transition: all 0.5s ease;
+        }
+        
+        #dark-mode-toggle .fa-moon {
+            display: block;
+        }
+        
+        #dark-mode-toggle .fa-sun {
+            display: none;
+        }
+        
+        body.dark-mode #dark-mode-toggle {
+            background: linear-gradient(135deg, #FF9800 0%, #FFC107 100%);
+        }
+        
+        body.dark-mode #dark-mode-toggle .fa-moon {
+            display: none;
+        }
+        
+        body.dark-mode #dark-mode-toggle .fa-sun {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="particle-background" id="particles"></div>
+    
+    <!-- Dark Mode Toggle Button -->
+    <button id="dark-mode-toggle" class="bounce-in" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon mode-icon"></i>
+        <i class="fas fa-sun mode-icon"></i>
+    </button>
+    
+    <div class="container my-4 zoom-in">
+        <header class="my-4 fade-in slide-in-right">
+            <h1 class="text-center rotate-in">Notes Dashboard</h1>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light slide-in-right">
+                <a class="navbar-brand float" href="#">Notes Web App</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link hover-grow" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link hover-grow" href="notes-history.html">Notes History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link hover-grow" href="#" id="logoutButton">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div id="user-welcome" class="my-4 fade-in-up bounce-in">
+            <h3>Welcome to Your Notes Dashboard, <span id="username" class="float">User</span>!</h3>
+            <p class="text-muted">Create, manage, and organize your thoughts in one place.</p>
+        </div>
+
+        <div id="alert-container"></div>
+
+        <div id="notes-container" class="my-4 fade-in-up">
+            <h2 class="slide-in-right">Your Notes</h2>
+            <button id="create-note-btn" class="btn mb-3 hover-shadow pulse">
+                <i class="fas fa-plus-circle mr-2"></i>Create New Note
+            </button>
+            
+            <!-- Note Creation Form -->
+            <div id="note-form" class="card mb-4 zoom-in" style="display: none;">
+                <div class="card-body">
+                    <h5 class="card-title slide-in-right">Create a New Note</h5>
+                    <form id="new-note-form">
+                        <div class="form-group bounce-in">
+                            <label for="note-title"><i class="fas fa-heading mr-2"></i>Title</label>
+                            <input type="text" class="form-control" id="note-title" required>
+                        </div>
+                        <div class="form-group bounce-in">
+                            <label for="note-content"><i class="fas fa-align-left mr-2"></i>Content</label>
+                            <textarea class="form-control" id="note-content" rows="3" required></textarea>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" id="cancel-note" class="btn btn-outline-secondary mr-2 slide-in-right">
+                                <i class="fas fa-times mr-1"></i>Cancel
+                            </button>
+                            <button type="submit" class="btn btn-success slide-in-right">
+                                <i class="fas fa-save mr-1"></i>Save Note
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div id="notes-list" class="list-group stagger-slide-in">
+                <!-- Notes will be dynamically loaded here -->
+                <div class="alert alert-info bounce-in">
+                    <i class="fas fa-info-circle mr-2"></i>No notes found. Click "Create New Note" to add your first note.
+                </div>
+            </div>
+        </div>
+        
+        <!-- History Modal (Removed) -->
+
+        <footer class="text-center my-4 fade-in">
+            <p class="float"><i class="far fa-copyright mr-1"></i>2025 NotesApp. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Display the username in the dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = JSON.parse(sessionStorage.getItem('user'));
+            if (user) {
+                document.getElementById('username').textContent = user.username;
+            } else {
+                // Redirect to login if not logged in
+                window.location.href = 'login.html';
+            }
+            
+            // Initialize the history tracking array in localStorage if it doesn't exist
+            if (!localStorage.getItem('notesHistory')) {
+                localStorage.setItem('notesHistory', JSON.stringify([]));
+            }
+            
+            // Clean up potential duplicate notes in localStorage
+            cleanupDuplicateNotes();
+            
+            // Simple notes handling
+            const notesData = JSON.parse(localStorage.getItem('notes')) || [];
+            const notesList = document.getElementById('notes-list');
+            const noteForm = document.getElementById('note-form');
+            const createNoteBtn = document.getElementById('create-note-btn');
+            const cancelNoteBtn = document.getElementById('cancel-note');
+            const newNoteForm = document.getElementById('new-note-form');
+            
+            // Function to clean up duplicate notes in localStorage
+            function cleanupDuplicateNotes() {
+                const notes = JSON.parse(localStorage.getItem('notes')) || [];
+                
+                if (notes.length > 0) {
+                    console.log('Cleaning up notes. Before:', notes.length);
+                    
+                    // Use a Map to track unique notes by ID
+                    const uniqueNotes = new Map();
+                    
+                    // Process all notes, keeping only the most recent version of each unique note
+                    notes.forEach(note => {
+                        if (!uniqueNotes.has(note.id)) {
+                            uniqueNotes.set(note.id, note);
+                        }
+                    });
+                    
+                    // Convert Map back to array
+                    const cleanedNotes = Array.from(uniqueNotes.values());
+                    
+                    console.log('After cleanup:', cleanedNotes.length);
+                    
+                    // Save the cleaned notes back to localStorage
+                    localStorage.setItem('notes', JSON.stringify(cleanedNotes));
+                    
+                    // Also de-duplicate history entries
+                    const history = JSON.parse(localStorage.getItem('notesHistory')) || [];
+                    
+                    if (history.length > 0) {
+                        console.log('Cleaning up history. Before:', history.length);
+                        
+                        const uniqueHistory = new Map();
+                        
+                        history.forEach(entry => {
+                            if (!uniqueHistory.has(entry.id)) {
+                                uniqueHistory.set(entry.id, entry);
+                            }
+                        });
+                        
+                        const cleanedHistory = Array.from(uniqueHistory.values());
+                        
+                        console.log('After history cleanup:', cleanedHistory.length);
+                        
+                        localStorage.setItem('notesHistory', JSON.stringify(cleanedHistory));
+                    }
+                }
+            }
+            
+            // Toggle note form visibility with animation
+            createNoteBtn.addEventListener('click', function() {
+                noteForm.style.display = 'block';
+                createNoteBtn.style.display = 'none';
+                // Add zoom-in animation when form appears
+                noteForm.classList.add('zoom-in');
+                
+                // Remove the animation class after it completes
+                setTimeout(() => {
+                    noteForm.classList.remove('zoom-in');
+                }, 500);
+            });
+            
+            cancelNoteBtn.addEventListener('click', function() {
+                // Add shake animation when canceling
+                noteForm.classList.add('shake');
+                
+                setTimeout(() => {
+                    noteForm.style.display = 'none';
+                    createNoteBtn.style.display = 'block';
+                    newNoteForm.reset();
+                    noteForm.classList.remove('shake');
+                }, 500);
+            });
+            
+            // Function to get the consistent user ID
+            function getUserId() {
+                return user._id || (user.id ? user.id : user.username);
+            }
+            
+            // Function to add an entry to history
+            function addToHistory(action, noteData) {
+                const history = JSON.parse(localStorage.getItem('notesHistory')) || [];
+                const historyEntry = {
+                    id: Date.now().toString(),
+                    action: action,
+                    note: noteData,
+                    timestamp: new Date().toISOString(),
+                    userId: getUserId()
+                };
+                
+                history.push(historyEntry);
+                localStorage.setItem('notesHistory', JSON.stringify(history));
+            }
+            
+            // Handle note form submission with animation
+            newNoteForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const titleInput = document.getElementById('note-title');
+                const contentInput = document.getElementById('note-content');
+                
+                // Get a unique ID for the note
+                const noteId = Date.now().toString();
+                
+                // Create a new note
+                const newNote = {
+                    id: noteId,
+                    title: titleInput.value,
+                    content: contentInput.value,
+                    createdAt: new Date().toISOString(),
+                    userId: getUserId()
+                };
+                
+                // Get existing notes
+                const notes = JSON.parse(localStorage.getItem('notes')) || [];
+                
+                // Make sure we're not adding a duplicate note
+                // Check if a note with the same title and content already exists
+                const duplicateNote = notes.find(note => 
+                    note.title === newNote.title && 
+                    note.content === newNote.content &&
+                    note.userId === newNote.userId
+                );
+                
+                if (duplicateNote) {
+                    console.log('Duplicate note detected, not adding:', newNote);
+                    
+                    // Show an animated alert
+                    const alertContainer = document.getElementById('alert-container');
+                    const alertElement = document.createElement('div');
+                    alertElement.className = 'alert alert-warning slide-in-right';
+                    alertElement.textContent = 'Note already exists!';
+                    alertContainer.appendChild(alertElement);
+                    
+                    // Remove alert after 3 seconds
+                    setTimeout(() => {
+                        alertElement.classList.add('slide-out');
+                        setTimeout(() => {
+                            alertContainer.removeChild(alertElement);
+                        }, 500);
+                    }, 3000);
+                } else {
+                    // Add new note to storage
+                    notes.push(newNote);
+                    localStorage.setItem('notes', JSON.stringify(notes));
+                    
+                    // Add to history
+                    addToHistory('create', newNote);
+                    
+                    console.log('New note added:', newNote);
+                    
+                    // Show success alert with animation
+                    const alertContainer = document.getElementById('alert-container');
+                    const alertElement = document.createElement('div');
+                    alertElement.className = 'alert alert-success slide-in-right';
+                    alertElement.textContent = 'Note created successfully!';
+                    alertContainer.appendChild(alertElement);
+                    
+                    // Remove alert after 3 seconds
+                    setTimeout(() => {
+                        alertElement.classList.add('slide-out');
+                        setTimeout(() => {
+                            alertContainer.removeChild(alertElement);
+                        }, 500);
+                    }, 3000);
+                }
+                
+                // Reset form with animation
+                noteForm.classList.add('zoom-in');
+                
+                setTimeout(() => {
+                    newNoteForm.reset();
+                    noteForm.style.display = 'none';
+                    createNoteBtn.style.display = 'block';
+                    noteForm.classList.remove('zoom-in');
+                    
+                    // Refresh notes list
+                    renderNotes();
+                }, 500);
+            });
+            
+            // Render notes with animations
+            function renderNotes() {
+                const notes = JSON.parse(localStorage.getItem('notes')) || [];
+                const userId = getUserId();
+                
+                // Filter notes to only show those that belong to the current user
+                const userNotes = notes.filter(note => {
+                    const noteUserId = note.userId || '';
+                    return noteUserId === userId;
+                });
+                
+                // Sort notes by creation date (newest first)
+                const sortedNotes = userNotes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                
+                if (sortedNotes.length === 0) {
+                    notesList.innerHTML = `
+                        <div class="alert alert-info bounce-in">
+                            <i class="fas fa-info-circle mr-2"></i>No notes found. Click "Create New Note" to add your first note.
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Clear previous notes
+                notesList.innerHTML = '';
+                
+                // Create and append notes with animation delay
+                sortedNotes.forEach((note, index) => {
+                    const noteElement = document.createElement('div');
+                    noteElement.className = 'note-item card mb-3';
+                    noteElement.style.animationDelay = `${index * 0.1}s`;
+                    
+                    const createdDate = new Date(note.createdAt).toLocaleString();
+                    
+                    noteElement.innerHTML = `
+                        <div class="card-body">
+                            <h5 class="card-title">${note.title}</h5>
+                            <p class="card-text">${note.content}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="far fa-clock mr-1"></i>${createdDate}</small>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-primary edit-note mr-1" data-id="${note.id}">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger delete-note" data-id="${note.id}">
+                                        <i class="fas fa-trash-alt"></i> Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    notesList.appendChild(noteElement);
+                });
+                
+                // Add event listeners to buttons
+                document.querySelectorAll('.edit-note').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const noteId = this.getAttribute('data-id');
+                        const note = sortedNotes.find(n => n.id === noteId);
+                        
+                        if (note) {
+                            // Populate form with note data
+                            document.getElementById('note-title').value = note.title;
+                            document.getElementById('note-content').value = note.content;
+                            
+                            // Show form
+                            noteForm.style.display = 'block';
+                            createNoteBtn.style.display = 'none';
+                            noteForm.classList.add('zoom-in');
+                            
+                            // Update form submission to handle edit
+                            newNoteForm.onsubmit = function(e) {
+                                e.preventDefault();
+                                
+                                // Update note
+                                note.title = document.getElementById('note-title').value;
+                                note.content = document.getElementById('note-content').value;
+                                note.updatedAt = new Date().toISOString();
+                                
+                                // Save to localStorage
+                                localStorage.setItem('notes', JSON.stringify(notes));
+                                
+                                // Add to history
+                                addToHistory('update', note);
+                                
+                                // Show success message
+                                showAlert('Note updated successfully!', 'success');
+                                
+                                // Reset form
+                                resetNoteForm();
+                                
+                                // Refresh notes list
+                                renderNotes();
+                            };
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.delete-note').forEach(button => {
+                    button.addEventListener('click', function() {
+                        if (confirm('Are you sure you want to delete this note?')) {
+                            const noteId = this.getAttribute('data-id');
+                            const noteIndex = notes.findIndex(n => n.id === noteId);
+                            
+                            if (noteIndex !== -1) {
+                                const deletedNote = notes.splice(noteIndex, 1)[0];
+                                
+                                // Save to localStorage
+                                localStorage.setItem('notes', JSON.stringify(notes));
+                                
+                                // Add to history
+                                addToHistory('delete', deletedNote);
+                                
+                                // Show success message
+                                showAlert('Note deleted successfully!', 'success');
+                                
+                                // Refresh notes list
+                                renderNotes();
+                            }
+                        }
+                    });
+                });
+            }
+            
+            // Helper function to show alerts
+            function showAlert(message, type = 'info') {
+                const alertContainer = document.getElementById('alert-container');
+                const alertElement = document.createElement('div');
+                alertElement.className = `alert alert-${type} slide-in-right`;
+                alertElement.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'} mr-2"></i>${message}`;
+                alertContainer.appendChild(alertElement);
+                
+                // Remove alert after 3 seconds
+                setTimeout(() => {
+                    alertElement.classList.add('slide-out');
+                    setTimeout(() => {
+                        alertContainer.removeChild(alertElement);
+                    }, 500);
+                }, 3000);
+            }
+            
+            // Function to reset the note form
+            function resetNoteForm() {
+                newNoteForm.reset();
+                noteForm.classList.add('zoom-in');
+                
+                setTimeout(() => {
+                    noteForm.style.display = 'none';
+                    createNoteBtn.style.display = 'block';
+                    noteForm.classList.remove('zoom-in');
+                    
+                    // Reset form submission handler
+                    newNoteForm.onsubmit = function(e) {
+                        e.preventDefault();
+                        
+                        // Original create note logic
+                        // ...existing code for creating new note...
+                    };
+                }, 500);
+            }
+            
+            // Add animation for page load
+            function animateOnLoad() {
+                const elements = document.querySelectorAll('.fade-in, .fade-in-up, .slide-in-right, .zoom-in, .bounce-in');
+                elements.forEach((element, index) => {
+                    element.style.animationDelay = `${index * 0.1}s`;
+                });
+            }
+            
+            // Call animation on load
+            animateOnLoad();
+            
+            // Initial render
+            renderNotes();
+            
+            // Handle logout with animation
+            document.getElementById('logoutButton').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Add shake animation to body before logout
+                document.body.classList.add('shake');
+                
+                setTimeout(() => {
+                    sessionStorage.removeItem('user');
+                    window.location.href = 'login.html';
+                }, 500);
+            });
+
+            // Initialize particle background
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles', {
+                    particles: {
+                        number: { value: 80, density: { enable: true, value_area: 1000 } },
+                        color: { value: '#4CAF50' },
+                        shape: { type: 'circle' },
+                        opacity: { value: 0.3, random: true, anim: { enable: true, speed: 1 } },
+                        size: { value: 3, random: true, anim: { enable: true, speed: 2 } },
+                        line_linked: { enable: true, distance: 150, color: '#4CAF50', opacity: 0.2, width: 1 },
+                        move: { 
+                            enable: true, 
+                            speed: 1, 
+                            direction: 'none', 
+                            random: true, 
+                            out_mode: 'out',
+                            attract: { enable: true, rotateX: 600, rotateY: 1200 }
+                        }
+                    },
+                    interactivity: {
+                        detect_on: 'canvas',
+                        events: {
+                            onhover: { enable: true, mode: 'grab' },
+                            onclick: { enable: true, mode: 'push' },
+                            resize: true
+                        }
+                    }
+                });
+            }
+        });
+        
+        // Add slide-out animation class
+        document.addEventListener('DOMContentLoaded', function() {
+            const style = document.createElement('style');
+            style.textContent = `
+                .slide-out {
+                    animation: slideOut 0.5s forwards;
+                }
+                
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(50px); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+
+        // Dark mode toggle functionality
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+        }
+        
+        // Dark mode toggle event listener
+        darkModeToggle.addEventListener('click', function() {
+            // Toggle dark mode class
+            body.classList.toggle('dark-mode');
+            
+            // Apply animation to the toggle button
+            this.classList.add('pulse');
+            setTimeout(() => {
+                this.classList.remove('pulse');
+            }, 500);
+            
+            // Save preference to localStorage
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                
+                // Update particles color for dark mode without reinitializing
+                if (typeof pJSDom !== 'undefined' && pJSDom.length > 0) {
+                    const particlesJS = pJSDom[0].pJS;
+                    particlesJS.particles.color.value = '#8BC34A';
+                    particlesJS.particles.line_linked.color = '#8BC34A';
+                    particlesJS.particles.color.rgb = hexToRgb('#8BC34A');
+                    particlesJS.particles.line_linked.color_rgb_line = hexToRgb('#8BC34A');
+                    
+                    // Refresh particles without destroying the instance
+                    particlesJS.fn.particlesRefresh();
+                }
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                
+                // Update particles color for light mode without reinitializing
+                if (typeof pJSDom !== 'undefined' && pJSDom.length > 0) {
+                    const particlesJS = pJSDom[0].pJS;
+                    particlesJS.particles.color.value = '#4CAF50';
+                    particlesJS.particles.line_linked.color = '#4CAF50';
+                    particlesJS.particles.color.rgb = hexToRgb('#4CAF50');
+                    particlesJS.particles.line_linked.color_rgb_line = hexToRgb('#4CAF50');
+                    
+                    // Refresh particles without destroying the instance
+                    particlesJS.fn.particlesRefresh();
+                }
+            }
+        });
+        
+        // Helper function to convert hex to RGB for particles.js
+        function hexToRgb(hex) {
+            // Remove the # if it exists
+            hex = hex.replace('#', '');
+            
+            // Parse the hex values
+            const r = parseInt(hex.substring(0, 2), 16);
+            const g = parseInt(hex.substring(2, 4), 16);
+            const b = parseInt(hex.substring(4, 6), 16);
+            
+            return {r: r, g: g, b: b};
+        }
+        
+        // Initialize particles just once when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof particlesJS !== 'undefined') {
+                const particleColor = body.classList.contains('dark-mode') ? '#8BC34A' : '#4CAF50';
+                particlesJS('particles', {
+                    particles: {
+                        number: { value: 80, density: { enable: true, value_area: 1000 } },
+                        color: { value: particleColor },
+                        shape: { type: 'circle' },
+                        opacity: { value: 0.3, random: true, anim: { enable: true, speed: 1 } },
+                        size: { value: 3, random: true, anim: { enable: true, speed: 2 } },
+                        line_linked: { enable: true, distance: 150, color: particleColor, opacity: 0.2, width: 1 },
+                        move: { 
+                            enable: true, 
+                            speed: 1, 
+                            direction: 'none', 
+                            random: true, 
+                            out_mode: 'out',
+                            attract: { enable: true, rotateX: 600, rotateY: 1200 }
+                        }
+                    },
+                    interactivity: {
+                        detect_on: 'canvas',
+                        events: {
+                            onhover: { enable: true, mode: 'grab' },
+                            onclick: { enable: true, mode: 'push' },
+                            resize: true
+                        }
+                    },
+                    retina_detect: true
+                });
+            }
+        });
+    </script>
+</body>
+</html>

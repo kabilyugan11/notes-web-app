@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Web Application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Enhanced animations and effects */
+        .particle-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        /* New attractive background with gradient overlay */
+        .bg-gradient-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(66, 103, 178, 0.8), rgba(66, 103, 178, 0.4), rgba(111, 66, 193, 0.6));
+            z-index: -2;
+        }
+        
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            filter: blur(3px);
+            opacity: 0.3;
+            z-index: -3;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: #ffffff;
+            opacity: 0.3;
+            border-radius: 50%;
+            animation: float-around 15s infinite ease-in-out;
+        }
+        
+        @keyframes float-around {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 50px) rotate(90deg); }
+            50% { transform: translate(50px, 100px) rotate(180deg); }
+            75% { transform: translate(-50px, 50px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+        
+        /* Updated styles for better readability with new background */
+        .typewriter h1 {
+            overflow: hidden;
+            border-right: .15em solid var(--primary-color);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .10em;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        .hero-text-container {
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-text-container p {
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white; }
+        }
+        
+        .feature-icon {
+            font-size: 3.5rem;
+            transition: all 0.5s ease;
+        }
+        
+        .feature-card {
+            transition: all 0.4s ease;
+            border-radius: 15px;
+            border: none;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            backdrop-filter: blur(5px);
+            background-color: rgba(255, 255, 255, 0.85);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        .cta-button {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.5s ease;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: white;
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+        
+        .cta-button:hover {
+            color: var(--primary-color);
+        }
+        
+        .cta-button:hover:before {
+            width: 100%;
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: white;
+            font-size: 2rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+        
+        .floating-action-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), #8754ff);
+            border-radius: 50%;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            z-index: 100;
+            transition: all 0.3s ease;
+            transform: scale(0);
+            opacity: 0;
+        }
+        
+        .floating-action-btn.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .floating-action-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+            cursor: pointer;
+        }
+        
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+        }
+        
+        .hero-image {
+            transition: all 0.8s ease;
+            transform-origin: center center;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+        
+        .hero-image:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Glass-like panel design for sections */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 40px;
+        }
+        
+        .testimonial-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.6) 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 50px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .testimonial-slider {
+            overflow: hidden;
+            position: relative;
+            height: 200px;
+        }
+        
+        .testimonial-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: all 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .testimonial-slide.active {
+            opacity: 1;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .navbar-brand {
+            color: white;
+            font-weight: 700;
+        }
+        
+        .nav-link {
+            color: white !important;
+        }
+        
+        .stats-item {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 30px 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stats-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stats-item h3 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .footer {
+            background: linear-gradient(to right, rgba(31, 38, 135, 0.8), rgba(66, 103, 178, 0.8));
+            color: white;
+            margin-top: 0;
+        }
+        
+        .social-icons a {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Background -->
+    <div class="bg-image"></div>
+    <div class="bg-gradient-overlay"></div>
+    <div class="particle-background" id="particles"></div>
+
+    <header class="fade-in">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#"><i class="fas fa-sticky-note"></i> Notes App</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link hover-grow" href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link hover-grow" href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-6 text-center hero-text-container typewriter">
+                        <h1 class="mb-4">Notes Web Application</h1>
+                        <p id="dynamic-typing" class="lead mb-3 typing-text"></p>
+                        <p class="lead mb-5 fade-in-up">Your personal space to create, manage, and organize your notes.</p>
+                        <a href="login.html" class="btn btn-lg cta-button mr-3"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        <a href="register.html" class="btn btn-lg cta-button"><i class="fas fa-user-plus"></i> Register</a>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-down">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="mt-5 pt-4 glass-panel">
+                <h2 class="text-center mb-5 reveal">Why Choose Our Notes App?</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card feature-card reveal">
+                            <div class="card-body text-center">
+                                <i class="fas fa-lock feature-icon mb-3" style="color: var(--primary-color);"></i>
+                                <h3>Secure</h3>
+                                <p>Your notes are encrypted and secure. Only you can access them.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card feature-card reveal">
+                            <div class="card-body text-center">
+                                <i class="fas fa-mobile-alt feature-icon mb-3" style="color: var(--primary-color);"></i>
+                                <h3>Responsive</h3>
+                                <p>Access your notes from any device, anywhere, anytime.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card feature-card reveal">
+                            <div class="card-body text-center">
+                                <i class="fas fa-pen-fancy feature-icon mb-3" style="color: var(--primary-color);"></i>
+                                <h3>Easy to Use</h3>
+                                <p>Simple and intuitive interface to manage your notes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- New stats section with animated counters -->
+            <section class="mt-5 text-center reveal glass-panel">
+                <h2 class="mb-4">Our Growing Community</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="stats-item">
+                            <h3 class="counter" data-target="10000">0</h3>
+                            <p>Registered Users</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stats-item">
+                            <h3 class="counter" data-target="50000">0</h3>
+                            <p>Notes Created</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stats-item">
+                            <h3 class="counter" data-target="98">0</h3>
+                            <p>Satisfaction Rate %</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="testimonial-section reveal">
+                <h2 class="text-center mb-4">What Our Users Say</h2>
+                <div class="testimonial-slider" id="testimonialSlider">
+                    <div class="testimonial-slide active">
+                        <p class="lead">"This notes app has completely changed how I organize my thoughts. So intuitive!"</p>
+                        <p><strong>- Sarah J.</strong></p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <p class="lead">"The best notes app I've ever used. The interface is clean and simple."</p>
+                        <p><strong>- John M.</strong></p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <p class="lead">"I use this app daily for my work notes. It's become an essential tool for me."</p>
+                        <p><strong>- Alex T.</strong></p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4><i class="fas fa-sticky-note"></i> Notes Web App</h4>
+                    <p>Your personal space to create, manage, and organize your notes.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="login.html" class="text-white">Login</a></li>
+                        <li><a href="register.html" class="text-white">Register</a></li>
+                        <li><a href="#" class="text-white">Features</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Connect With Us</h5>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4" style="background-color: rgba(255,255,255,0.2);">
+            <p class="text-center mb-0">&copy; 2023 Notes Web Application. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="floating-action-btn" id="scrollTopBtn">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/interactive-home.js"></script>
+    <script>
+        // Create particle background
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.getElementById('particles');
+            const numParticles = 15;
+            
+            for (let i = 0; i < numParticles; i++) {
+                const size = Math.floor(Math.random() * 60) + 20; // 20px to 80px
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particle.style.animationDuration = `${15 + Math.random() * 15}s`;
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Scroll animations
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            function revealOnScroll() {
+                const windowHeight = window.innerHeight;
+                
+                revealElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('active');
+                    }
+                });
+                
+                // Show/hide scroll-to-top button
+                const scrollBtn = document.getElementById('scrollTopBtn');
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    scrollBtn.classList.add('show');
+                } else {
+                    scrollBtn.classList.remove('show');
+                }
+            }
+            
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Check on load
+            
+            // Scroll to top button
+            document.getElementById('scrollTopBtn').addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Testimonial slider
+            const testimonials = document.querySelectorAll('.testimonial-slide');
+            let currentSlide = 0;
+            
+            function nextSlide() {
+                testimonials[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % testimonials.length;
+                testimonials[currentSlide].classList.add('active');
+            }
+            
+            // Change slide every 5 seconds
+            setInterval(nextSlide, 5000);
+            
+            // Interactive feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = 'rgba(var(--primary-color-rgb), 0.05)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>
+```
+</copilot-edited-file>

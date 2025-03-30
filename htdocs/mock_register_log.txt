@@ -1,0 +1,127 @@
+Registration attempt: 2025-03-20 11:57:41
+Content-Type: application/json
+Raw JSON input: {"username":"testuser4", "email":"test4@example.com", "password":"Password123"}
+Processed data: Array
+(
+    [username] => testuser4
+    [email] => test4@example.com
+    [password] => Password123
+)
+
+Validation passed, processing registration
+Creating user: testuser4, test4@example.com
+User created successfully
+Registration attempt: 2025-03-20 11:58:21
+Content-Type: application/json
+Raw JSON input: {"username":"akil123","email":"123@gmail.cpom","password":"Akilash,119."}
+Processed data: Array
+(
+    [username] => akil123
+    [email] => 123@gmail.cpom
+    [password] => Akilash,119.
+)
+
+Validation passed, processing registration
+User already exists: akil123 or 123@gmail.cpom
+Registration attempt: 2025-03-20 11:58:30
+Content-Type: application/json
+Raw JSON input: {"username":"akil1234","email":"123@gmail.cpom","password":"Akilash,119."}
+Processed data: Array
+(
+    [username] => akil1234
+    [email] => 123@gmail.cpom
+    [password] => Akilash,119.
+)
+
+Validation passed, processing registration
+Creating user: akil1234, 123@gmail.cpom
+User created successfully
+Registration attempt: 2025-03-20 13:29:08
+Content-Type: application/json
+Raw JSON input: {"username":"akil1235","email":"akilash@gmail.com","password":"Akilash,119."}
+Processed data: Array
+(
+    [username] => akil1235
+    [email] => akilash@gmail.com
+    [password] => Akilash,119.
+)
+
+Validation passed, processing registration
+User already exists: akil1235 or akilash@gmail.com
+Registration attempt: 2025-03-20 13:29:17
+Content-Type: application/json
+Raw JSON input: {"username":"akil1236","email":"akilash@gmail.com","password":"Akilash,119."}
+Processed data: Array
+(
+    [username] => akil1236
+    [email] => akilash@gmail.com
+    [password] => Akilash,119.
+)
+
+Validation passed, processing registration
+User already exists: akil1236 or akilash@gmail.com
+Registration attempt: 2025-03-20 13:29:28
+Content-Type: application/json
+Raw JSON input: {"username":"akil1235","email":"akilash23@gmail.com","password":"Akilash,119."}
+Processed data: Array
+(
+    [username] => akil1235
+    [email] => akilash23@gmail.com
+    [password] => Akilash,119.
+)
+
+Validation passed, processing registration
+Creating user: akil1235, akilash23@gmail.com
+User created successfully
+Registration attempt: 2025-03-20 13:41:57
+Content-Type: application/json
+Raw JSON input: {"username":"kabil","email":"kabil@gmail.com","password":"123456789"}
+Processed data: Array
+(
+    [username] => kabil
+    [email] => kabil@gmail.com
+    [password] => 123456789
+)
+
+Validation passed, processing registration
+Creating user: kabil, kabil@gmail.com
+User created successfully
+Registration attempt: 2025-03-30 11:26:17
+Content-Type: application/json
+Raw JSON input: {"username":"admin","email":"aakilssdwaaash111@gmail.com","password":"admin123"}
+Processed data: Array
+(
+    [username] => admin
+    [email] => aakilssdwaaash111@gmail.com
+    [password] => admin123
+)
+
+Validation passed, processing registration
+Creating user: admin, aakilssdwaaash111@gmail.com
+User created successfully
+Registration attempt: 2025-03-30 13:39:36
+Content-Type: application/json
+Raw JSON input: {"username":"ironman","email":"ironman@gmail.com","password":"ironman..."}
+Processed data: Array
+(
+    [username] => ironman
+    [email] => ironman@gmail.com
+    [password] => ironman...
+)
+
+Validation passed, processing registration
+Creating user: ironman, ironman@gmail.com
+User created successfully
+Registration attempt: 2025-03-30 15:44:20
+Content-Type: application/json
+Raw JSON input: {"username":"leodass","email":"leodass@gmail.com","password":"leodass"}
+Processed data: Array
+(
+    [username] => leodass
+    [email] => leodass@gmail.com
+    [password] => leodass
+)
+
+Validation passed, processing registration
+Creating user: leodass, leodass@gmail.com
+User created successfully

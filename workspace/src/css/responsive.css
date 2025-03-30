@@ -1,0 +1,76 @@
+@media (max-width: 1200px) {
+    .container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 992px) {
+    .notes-list-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+    
+    .navbar {
+        flex-direction: column;
+    }
+    
+    .navbar .navbar-nav {
+        margin-top: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .navbar a {
+        display: block;
+        margin: 0.5rem 0;
+    }
+    
+    .notes-list-container {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .login-container, .register-container {
+        max-width: 90%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        width: 95%;
+        padding: 0.5rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .card {
+        padding: 15px;
+    }
+    
+    .btn, .button {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    
+    .navbar-toggler {
+        display: block;
+        margin: 0 auto 10px;
+    }
+    
+    .form-control {
+        padding: 10px;
+    }
+}

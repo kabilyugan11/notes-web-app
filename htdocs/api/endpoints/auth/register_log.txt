@@ -1,0 +1,40 @@
+Registration attempt: 2025-03-19 16:33:33
+Workspace root: /home/akil/kb/notes-web-app/workspace
+PHP version: 8.3.6
+Loaded extensions: Core, date, libxml, openssl, pcre, zlib, filter, hash, json, pcntl, random, Reflection, SPL, session, standard, sodium, cli_server, PDO, calendar, ctype, curl, mbstring, FFI, fileinfo, ftp, gettext, iconv, intl, exif, mongodb, Phar, posix, readline, shmop, sockets, sysvmsg, sysvsem, sysvshm, tokenizer, zip, Zend OPcache
+POST data: Array
+(
+    [username] => akil123
+    [email] => aakilash111@gmail.com
+    [password] => Akilash,119.
+)
+
+Final data for processing: Array
+(
+    [username] => akil123
+    [email] => aakilash111@gmail.com
+    [password] => Akilash,119.
+)
+
+Creating database connection
+Uncaught Exception: Class "MongoDB\Client" not found in /home/akil/kb/notes-web-app/workspace/api/classes/Database.php on line 21
+Registration attempt: 2025-03-20 11:52:17
+Workspace root: /home/akil/kb/notes-web-app/htdocs
+PHP version: 8.3.6
+Loaded extensions: Core, date, libxml, openssl, pcre, zlib, filter, hash, json, pcntl, random, Reflection, SPL, session, standard, sodium, cli_server, PDO, calendar, ctype, curl, mbstring, FFI, fileinfo, ftp, gettext, iconv, intl, exif, mongodb, Phar, posix, readline, shmop, sockets, sysvmsg, sysvsem, sysvshm, tokenizer, zip, Zend OPcache
+POST data: Array
+(
+)
+
+Raw request data: {"username":"testuser2", "email":"test2@example.com", "password":"Password123"}
+Final data for processing: Array
+(
+    [username] => testuser2
+    [email] => test2@example.com
+    [password] => Password123
+)
+
+Creating database connection
+Database connection established
+Attempting to register user: testuser2, test2@example.com
+Register result: Success

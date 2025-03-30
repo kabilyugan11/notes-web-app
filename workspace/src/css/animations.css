@@ -1,0 +1,141 @@
+/* Fade in animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-in;
+}
+
+/* Slide in animation */
+@keyframes slideIn {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.slide-in {
+    animation: slideIn 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Staggered slide in for multiple elements */
+.stagger-slide-in > * {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.stagger-slide-in > *:nth-child(1) { animation: slideIn 0.5s 0.1s forwards; }
+.stagger-slide-in > *:nth-child(2) { animation: slideIn 0.5s 0.2s forwards; }
+.stagger-slide-in > *:nth-child(3) { animation: slideIn 0.5s 0.3s forwards; }
+.stagger-slide-in > *:nth-child(4) { animation: slideIn 0.5s 0.4s forwards; }
+.stagger-slide-in > *:nth-child(5) { animation: slideIn 0.5s 0.5s forwards; }
+
+/* Pulse animation for buttons */
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+    50% { transform: scale(1.05); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); }
+    100% { transform: scale(1); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+}
+
+.pulse {
+    animation: pulse 2.5s infinite;
+}
+
+/* Rotate animation */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.rotate {
+    animation: rotate 2s linear infinite;
+}
+
+/* Shake animation for error states */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); }
+    20%, 40%, 60%, 80% { transform: translateX(6px); }
+}
+
+.shake {
+    animation: shake 0.6s;
+}
+
+/* Fade in up animation */
+@keyframes fadeInUp {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Transition effects */
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+/* Hover effects */
+.hover-grow {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hover-grow:hover {
+    transform: scale(1.05);
+}
+
+.hover-shadow {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+/* Glow effect */
+.hover-glow {
+    transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 15px rgba(66, 165, 245, 0.6);
+}
+
+/* Loading spinner */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #4a6fa5;
+    animation: rotate 1s linear infinite;
+    margin: 20px auto;
+}
+
+/* Shimmer loading effect */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.shimmer {
+    background: linear-gradient(90deg, 
+        rgba(0,0,0,0.05) 25%, 
+        rgba(0,0,0,0.1) 50%, 
+        rgba(0,0,0,0.05) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}

@@ -1,0 +1,7 @@
+Connecting to MongoDB: mongodb://localhost:27017, DB: notes_app
+Connecting to MongoDB: mongodb://localhost:27017, DB: notes_app
+MongoDB connection successful
+Connecting to MongoDB: mongodb://localhost:27017, DB: notes_app
+MongoDB connection successful
+Connecting to MongoDB: mongodb://localhost:27017, DB: notes_app
+MongoDB connection successful

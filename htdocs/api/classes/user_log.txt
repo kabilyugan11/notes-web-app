@@ -1,0 +1,9 @@
+User class initialized: 2025-03-20 11:52:17
+Database provided to constructor
+Register attempt for: testuser2, test2@example.com
+Selecting database
+Getting users collection
+Database selected, collection accessed
+Checking for existing user
+Inserting new user
+Insert result: Success
