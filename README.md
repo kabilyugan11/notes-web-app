@@ -130,6 +130,8 @@ notes-web-app/
 4. **Navigate to the `htdocs` directory to Run the Web App**
    ```bash
    cd htdocs
+   ```
+   ```bash
    php -S localhost:8000 
    ```
 
